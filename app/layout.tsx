@@ -39,7 +39,7 @@ export default function RootLayout({
             </a>
           </div>
           <div className="my-5 flex items-center justify-center">
-            <h3>The People's Digest</h3>
+            <h3 className="font-medium text-5xl">The People's Digest</h3>
           </div>
           <div className="my-5 mr-20 flex items-center justify-center">
             <button className="rounded-full bg-[#040979] p-5 text-white">Log in</button>
