@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import PostCard from '@/components/posts/PostCard';
+import PostModal from "@/components/posts/PostModal";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [postTitle, setPostTitle] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -15,7 +18,13 @@ export default function Home() {
     };
 
     fetchPosts();
-  }, []);
+  }, [postTitle]);
+
+  const handlePostForm = (e) => {
+    e.preventDefault();
+
+    setOpen(true);
+  }
 
 
   return (
@@ -53,12 +62,25 @@ export default function Home() {
       </div>
 
       <div className="flex-col mt-5 mb-10 text-lg lg:flex ">
-        <form action="">
-          <label className="p-5 flex flex-row w-full justify-between">
-            <input className="justify-self-start placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="What's new?" type="text" name="post" />
-            <button className="justify-self-end ml-5 border-black border-2 p-2 md:p-5 rounded-full">Post</button>
+        <form
+          onSubmit={handlePostForm}
+        >
+          <label className="flex flex-row w-full justify-between">
+            <input 
+              value={postTitle} 
+              onChange={(e) => setPostTitle(e.target.value)} 
+              className="justify-self-start placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-[#FEF9E7] hover:bg-[#1a1d5c] hover:text-white focus:ring-[#1a1d5c] focus:ring-1 sm:text-sm" 
+              placeholder="What's new? Add your post title here..." 
+              type="text" 
+              name="post" 
+            />
+            <button type="submit" className="justify-self-end ml-5 border-2 p-2 md:p-5 rounded-full bg-[#040979] text-[#FEF9E7] hover:bg-[#1a1d5c]">Post</button>
           </label>
         </form>
+
+        <PostModal postTitle={postTitle} open={open} onClose={() => setOpen(false)}>
+          <h3 className='font-bold my-5 md:mx-10'>{postTitle}</h3>
+        </PostModal>
 
         <div className="flex flex-row mb-2">
           <h1 className="flex items-center mx-5 md:mx-0 my-2 md:my-5">Feed</h1>
@@ -69,6 +91,7 @@ export default function Home() {
         <div className="flex flex-col">
           {posts && posts.map((post) => (
             <PostCard
+              key={post.id}
               id={post.id}
               title={post.title}
               details={post.details}

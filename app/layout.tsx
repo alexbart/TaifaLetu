@@ -41,7 +41,7 @@ export default function RootLayout({
             <h3 className="font-medium text-5xl">The People's Digest</h3>
           </div>
           <div className="my-5 mx-20 flex items-center justify-center">
-            <button className="rounded-full bg-[#040979] p-5 text-white">Log in</button>
+            <button className="rounded-full bg-[#040979] hover:bg-[#1a1d5c] p-5 text-white">Log in</button>
           </div>
         </div>
 
