@@ -1,35 +1,89 @@
-import Image from "next/image";
+"use client"
+
+import { useEffect, useState } from "react";
+import PostCard from '@/components/posts/PostCard';
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch(`/api/posts`);
+      const data = await response.json();
+
+      setPosts(data);
+    };
+
+    fetchPosts();
+  }, []);
+
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {" "}
-            <Image
-              src="/assets/img/mainlogo.jpeg"
-              alt="Main Logo"
-              className="dark:invert-0"
-              width={100}
-              height={24}
-              priority
-            /> Mkenya Daima
-          </a>
+    <main className="grid min-h-screen lg:w-full lg:grid-cols-3 lg:text-left justify-between border-t-2 border-black">
+      <div className="flex-col mx-10 text-lg lg:flex border-r-2 border-black">
+        <div className="justify-self-start mb-20 justify-between">
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+          <div className="my-5">
+            <h3>Topic</h3>
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <div>
+            <h3>LINK</h3>
+          </div>
+          <div>
+            <h3>PROFILE</h3>
+          </div>
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        Home
+      <div className="flex-col mt-5 mb-10 text-lg lg:flex ">
+
+        <form action="">
+          <label className="flex flex-row w-full justify-between">
+            <input className="justify-self-start placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="What's new?" type="text" name="post" />
+            <button className="justify-self-end ml-5 border-black border-2 p-5 rounded-full">Post</button>
+          </label>
+        </form>
+
+
+        <h1 className="flex items-center my-5">Feed</h1>
+
+        <div className="flex flex-col">
+          {posts && posts.map((post) => (
+            <PostCard
+              id={post.id}
+              title={post.title}
+              details={post.details}
+              userId={post.userId}
+              datePosted={post.datePosted}
+              dateOfIncident={post.dateOfIncident}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        There will be sth here
+      <div className="flex-col mx-10 items-center justify-between text-lg lg:flex border-l-2 border-black">
+        <div className="mt-5">
+          <h1>Highlights</h1>
+
+          <div></div>
+        </div>
       </div>
     </main>
   );
