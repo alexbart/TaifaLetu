@@ -63,7 +63,7 @@ export default function Home() {
         <div className="flex flex-row mb-2">
           <h1 className="flex items-center mx-5 md:mx-0 my-2 md:my-5">Feed</h1>
 
-          <button className="md:hidden bg-[#040979] text-[#FEF9E7] p-2 rounded-full">Highlights</button>
+          <button className="md:hidden bg-[#040979] text-[#FEF9E7] py-2 px-5 rounded-full">Highlights</button>
         </div>
 
         <div className="flex flex-col">
