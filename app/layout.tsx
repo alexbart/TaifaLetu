@@ -39,10 +39,10 @@ export default function RootLayout({
                 <h3 className='text-[#040979]'>Taifa Letu</h3>
               </a>
             </div>
-            <div className="md:my-5 md:mx-5 text-center flex items-center justify-center">
-              <h3 className="font-medium text-5xl text-[#040979]">The People's Digest</h3>
+            <div className="md:my-5 md:mx-7 text-center flex items-center justify-center">
+              <h3 className="font-medium text-2xl md:text-5xl text-[#040979]">The People's Digest</h3>
             </div>
-            <div className="my-5 mx-20 flex items-center justify-center">
+            <div className="my-5 md:mx-10 mx-20 flex items-center justify-center">
               <SignedOut>
                 <SignInButton className="rounded-full bg-[#040979] hover:bg-[#1a1d5c] p-5 text-white" />
                 {/* <button className="rounded-full bg-[#040979] hover:bg-[#1a1d5c] p-5 text-white">Log in</button> */}

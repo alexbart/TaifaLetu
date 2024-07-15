@@ -118,9 +118,21 @@ export default function Home() {
 
       <div className="hidden md:flex-col md:mx-10 items-center justify-between text-lg lg:flex border-l-2 border-[#040979]">
         <div className="mt-5">
-          <h1>Highlights</h1>
+          <h1 className="flex items-center mx-5 md:mx-0 my-2 md:my-3 font-medium text-[#040979] py-2 border-b-2 border-[#040979]">Highlights</h1>
 
-          <div></div>
+          <div className="flex flex-col mx-2">
+            {posts && posts.map((post) => (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                details={post.details}
+                userId={post.userId}
+                datePosted={post.datePosted}
+                dateOfIncident={post.dateOfIncident}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </main>
